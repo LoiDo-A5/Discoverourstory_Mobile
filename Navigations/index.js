@@ -5,7 +5,7 @@ import {Text, View} from 'react-native';
 import utils from './utils';
 import Routes from '../App/Utils/Route';
 import {Colors} from '../App/Configs/Colors';
-import {SplashScreen} from './SplashScreen';
+import {SplashScreen} from '../App/Containers/SplashScreen/index.';
 
 const Stack = createStackNavigator();
 

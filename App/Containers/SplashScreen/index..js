@@ -1,8 +1,10 @@
 import React, {useCallback, useEffect} from 'react';
-import {View, ActivityIndicator, StyleSheet, Image, Text} from 'react-native';
+import {View, ActivityIndicator, Image, ImageBackground} from 'react-native';
 import {CommonActions, useNavigation} from '@react-navigation/native';
-import {Colors} from '../App/Configs/Colors';
 import {useSelector} from 'react-redux';
+import styles from './styles';
+import Routes from '../../Utils/Route';
+import Images from '../../Configs/Images';
 
 export const SplashScreen = () => {
   const navigation = useNavigation();
@@ -22,42 +24,23 @@ export const SplashScreen = () => {
   useEffect(() => {
     const checkAuth = async () => {
       if (isLogin) {
-        resetNavigation('Main');
+        resetNavigation(Routes.Main);
       } else {
-        resetNavigation('Auth');
+        resetNavigation(Routes.Auth);
       }
     };
     checkAuth();
   }, [isLogin, resetNavigation]);
 
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={Images.background}
+      style={styles.container}
+      resizeMode="cover">
       <View style={styles.loadingContainer}>
         <ActivityIndicator style={styles.icon} size="large" />
         <Image resizeMode="contain" style={styles.logo} />
-        <Text>123</Text>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.Gray,
-  },
-  loadingContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  icon: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logo: {
-    zIndex: -1,
-  },
-});
