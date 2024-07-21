@@ -6,7 +6,7 @@ import utils from './utils';
 import Routes from '../App/Utils/Route';
 import {Colors} from '../App/Configs/Colors';
 import {SplashScreen} from '../App/Containers/SplashScreen/index.';
-import { AuthStack } from './AuthStack';
+import {AuthStack} from './AuthStack';
 
 const Stack = createStackNavigator();
 

@@ -5,12 +5,12 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './LoginStyles';
 import {useSelector} from 'react-redux';
 
-import Images from '../../../Configs/Images';
 import LoadingScreen from '../../../Components/LoadingView';
 import Text from '../../../Components/Text';
 import TextInput from '../../../Components/Form/TextInput';
 import TextInputPassword from '../../../Components/Form/TextInputPassword';
 import Routes from '../../../Utils/Route';
+import Images from '../../../Configs/Images';
 
 const Login = () => {
   const {isLogin} = useSelector(state => state.auth);
@@ -23,7 +23,7 @@ const Login = () => {
   const [password, setPasswordState] = useState('');
   const [passwordError, setPasswordlErrorState] = useState();
 
-  console.log('123321');
+  console.log('123456');
 
   const validate = () => {
     Keyboard.dismiss();
