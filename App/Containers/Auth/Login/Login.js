@@ -11,8 +11,9 @@ import TextInput from '../../../Components/Form/TextInput';
 import TextInputPassword from '../../../Components/Form/TextInputPassword';
 import Routes from '../../../Utils/Route';
 import Images from '../../../Configs/Images';
-import { axiosPost } from '../../../Apis/axios';
+import {axiosPost} from '../../../Apis/axios';
 import API from '../../../Configs/API';
+import {login} from '../../../Redux/reducer/authSlice';
 
 const Login = () => {
   const {isLogin} = useSelector(state => state.auth);
@@ -27,15 +28,13 @@ const Login = () => {
   const [passwordError, setPasswordlErrorState] = useState();
 
   const handleClickLogin = async () => {
-    const {success, data} = await axiosPost(API.AUTH.LOGIN, {
+    const {success, data, error} = await axiosPost(API.AUTH.LOGIN, {
       username: phone,
       password: password,
     });
+    console.log('111111111111111', data, success, error);
     if (success) {
-      router.push(Routes.Home);
       dispatch(login(data));
-    } else {
-      dispatch(loginFailure(data));
     }
   };
 

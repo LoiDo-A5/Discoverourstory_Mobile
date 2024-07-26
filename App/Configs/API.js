@@ -1,9 +1,7 @@
 const API = {
   AUTH: {
-    LOGIN: '/login',
-    REFRESH_TOKEN: '/refresh-token',
+    LOGIN: '/accounts/login/',
   },
-  ORDER: '/order',
 };
 
 export default API;

@@ -15,15 +15,8 @@ const authSlice = createSlice({
       initData(action.payload);
       return {
         ...state,
-        isLoggedIn: true,
+        isLogin: true,
         account: action.payload,
-      };
-    },
-    loginFailure: (state, action) => {
-      return {
-        ...state,
-        isLoggedIn: false,
-        errorMsg: action.payload,
       };
     },
     updateAuthentication: (state, action) => {
@@ -53,6 +46,7 @@ export const {
   setRefreshToken,
   handleLogout,
   updateAuthentication,
+  login,
 } = authSlice.actions;
 
 export default authSlice.reducer;

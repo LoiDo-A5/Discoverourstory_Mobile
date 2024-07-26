@@ -6,12 +6,13 @@ import {ToastBottomHelper} from '../Utils/Utils';
 import {PROBLEM_CODE} from '../Configs/Constant';
 import {deleteData, getData, storeData} from '../Utils/Storage';
 
+console.log('22222222222', Config.API_ROOT);
+
+const API_ROOT = 'http://10.0.2.2:8000/api';
 const api = create({
-  baseURL: Config.API_ROOT,
+  baseURL: API_ROOT,
   headers: {
     'Content-Type': 'application/json',
-    'App-Version-Code': Config.APP_VERSION_CODE,
-    'App-Package-Name': Config.APP_PACKAGE_NAME,
   },
   timeout: 30000,
 });
