@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {initData} from '../../Utils/Utils';
 
 const initialState = {
   accessToken: '',
@@ -10,6 +11,21 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    login: (state, action) => {
+      initData(action.payload);
+      return {
+        ...state,
+        isLoggedIn: true,
+        account: action.payload,
+      };
+    },
+    loginFailure: (state, action) => {
+      return {
+        ...state,
+        isLoggedIn: false,
+        errorMsg: action.payload,
+      };
+    },
     updateAuthentication: (state, action) => {
       const {accessToken, refreshToken} = action.payload;
       state.accessToken = accessToken;

@@ -1,7 +1,6 @@
 import {create} from 'apisauce';
 import Config from 'react-native-config';
 import NetInfo from '@react-native-community/netinfo';
-import i18n from 'i18n-js';
 import {isHTML} from '../Utils/Validation';
 import {ToastBottomHelper} from '../Utils/Utils';
 import {PROBLEM_CODE} from '../Configs/Constant';
@@ -48,11 +47,11 @@ const parseErrorResponse = async error => {
     if (!hideError) {
       switch (error.problem) {
         case PROBLEM_CODE.SERVER_ERROR:
-          message = i18n.t('server_error');
+          message = 'server_error';
           break;
         case PROBLEM_CODE.CLIENT_ERROR:
           if (error.status === 404 && isHTML(error.data)) {
-            message = i18n.t('not_found');
+            message = 'not_found';
           }
           break;
       }

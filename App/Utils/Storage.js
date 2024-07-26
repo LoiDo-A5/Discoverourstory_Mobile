@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const STORAGE_KEY = {
   FIREBASE_APP_CONFIG: 'app_config',

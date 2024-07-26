@@ -1,12 +1,8 @@
-import {Platform, PixelRatio, Linking} from 'react-native';
-import DeviceInfo from 'react-native-device-info';
+import {PixelRatio, Linking} from 'react-native';
 import Toast from 'react-native-toast-message';
-import t from 'i18n';
 import {isValidPassword} from './Validation';
 import api from '../Apis/axios';
 import {LANGUAGE} from '../Configs/Constant';
-
-const getUuid = require('uuid-by-string');
 
 export const setAxiosDefaultAuthToken = token => {
   api.setHeaders({Authorization: `Token ${token}`});
@@ -22,17 +18,8 @@ export const deleteDefaultAuthToken = () => {
   delete api.headers.Authorization;
 };
 
-const phoneUtil =
-  require('google-libphonenumber').PhoneNumberUtil.getInstance();
-
-export const getCountryCodeForRegion = regionCode => {
-  return phoneUtil.getCountryCodeForRegion(regionCode); //ex: input: "VN" -> output: "84"
-};
-
-export const getDeviceId = () => {
-  return Platform.OS === 'ios'
-    ? DeviceInfo.getUniqueId()
-    : getUuid(DeviceInfo.getUniqueId());
+export const initData = ({token}) => {
+  setAxiosDefaultAuthToken(token);
 };
 
 export const isObjectEmpty = obj => {
@@ -112,22 +99,22 @@ export const validateField = (key, value, password = '', nextCondition) => {
       return textEnter;
     }
     if (!isPassword) {
-      return t('password_must_be_strong');
+      return 'password_must_be_strong';
     }
     if (password) {
       if (value !== password && password !== '') {
-        return t('validate_password_not_match');
+        return 'validate_password_not_match';
       }
     }
     return nextCondition && nextCondition();
   };
   switch (key) {
     case 'current_password':
-      return checkCaseErrors(t('please_enter_your_current_password'));
+      return checkCaseErrors('please_enter_your_current_password');
     case 'new_password':
-      return checkCaseErrors(t('please_enter_new_password'));
+      return checkCaseErrors('please_enter_new_password');
     case 'confirm_password': {
-      return checkCaseErrors(t('please_enter_your_confirm_password'));
+      return checkCaseErrors('please_enter_your_confirm_password');
     }
     default:
       return '';

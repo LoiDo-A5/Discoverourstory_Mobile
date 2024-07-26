@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Button, SafeAreaView, Image, Keyboard} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './LoginStyles';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import LoadingScreen from '../../../Components/LoadingView';
 import Text from '../../../Components/Text';
@@ -11,10 +11,13 @@ import TextInput from '../../../Components/Form/TextInput';
 import TextInputPassword from '../../../Components/Form/TextInputPassword';
 import Routes from '../../../Utils/Route';
 import Images from '../../../Configs/Images';
+import { axiosPost } from '../../../Apis/axios';
+import API from '../../../Configs/API';
 
 const Login = () => {
   const {isLogin} = useSelector(state => state.auth);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const isLoading = false;
 
@@ -23,7 +26,18 @@ const Login = () => {
   const [password, setPasswordState] = useState('');
   const [passwordError, setPasswordlErrorState] = useState();
 
-  console.log('123456');
+  const handleClickLogin = async () => {
+    const {success, data} = await axiosPost(API.AUTH.LOGIN, {
+      username: phone,
+      password: password,
+    });
+    if (success) {
+      router.push(Routes.Home);
+      dispatch(login(data));
+    } else {
+      dispatch(loginFailure(data));
+    }
+  };
 
   const validate = () => {
     Keyboard.dismiss();
@@ -41,7 +55,7 @@ const Login = () => {
       setPasswordlErrorState('');
     }
     if (!hasError) {
-      // handleClickLogin({username: phone, password: password});
+      handleClickLogin();
     }
   };
 
