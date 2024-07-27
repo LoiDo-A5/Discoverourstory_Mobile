@@ -48,7 +48,7 @@ export const AuthStack = () => {
         options={{
           headerTitle: '',
           headerBackImage: () => (
-            <Icon name="west" size={27} color={Colors.Black} />
+            <Icon name="home" size={27} color={Colors.Black} />
           ),
           headerStyle: {
             elevation: 0,
