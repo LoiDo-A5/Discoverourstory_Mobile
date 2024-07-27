@@ -28,11 +28,10 @@ const Login = () => {
   const [passwordError, setPasswordlErrorState] = useState();
 
   const handleClickLogin = async () => {
-    const {success, data, error} = await axiosPost(API.AUTH.LOGIN, {
+    const {success, data} = await axiosPost(API.AUTH.LOGIN, {
       username: phone,
       password: password,
     });
-    console.log('111111111111111', data, success, error);
     if (success) {
       dispatch(login(data));
     }

@@ -7,6 +7,7 @@ import Routes from '../App/Utils/Route';
 import {Colors} from '../App/Configs/Colors';
 import {SplashScreen} from '../App/Containers/SplashScreen/index.';
 import {AuthStack} from './AuthStack';
+import MainDrawer from './Main';
 
 const Stack = createStackNavigator();
 
@@ -41,11 +42,11 @@ let NavStack = memo(() => {
         component={AuthStack}
         options={{headerShown: false}}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name={Routes.Main}
         component={MainDrawer}
         options={{headerShown: false}}
-      /> */}
+      />
     </Stack.Navigator>
   );
 });
