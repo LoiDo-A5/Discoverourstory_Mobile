@@ -6,6 +6,7 @@ const Routes = {
   SignUp: 'SignUp',
   PhoneNumberVerification: 'PhoneNumberVerification',
   ForgotPassword: 'ForgotPassword',
+  MyAccount: 'MyAccount',
 };
 
 export default Routes;

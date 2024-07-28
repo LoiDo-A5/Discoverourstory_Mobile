@@ -24,7 +24,7 @@ const DrawerContainer = ({navigation}) => {
   const doLogout = () => {
     dispatch(handleLogout());
     const resetAction = CommonActions.reset({
-      index: 0,
+      index: 1,
       routes: [{name: 'Auth'}],
     });
     navigation.dispatch(resetAction);

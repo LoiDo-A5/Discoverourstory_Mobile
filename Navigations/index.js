@@ -7,6 +7,8 @@ import {Colors} from '../App/Configs/Colors';
 import {SplashScreen} from '../App/Containers/SplashScreen/index.';
 import {AuthStack} from './AuthStack';
 import MainDrawer from './Main';
+import MyAccount from '../App/Containers/MyAccount';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +47,21 @@ let NavStack = memo(() => {
         name={Routes.Main}
         component={MainDrawer}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Routes.MyAccount}
+        component={MyAccount}
+        options={{
+          headerTitle: '',
+          // eslint-disable-next-line react/no-unstable-nested-components
+          headerBackImage: () => (
+            <Icon name="arrow-back" size={27} color={Colors.Black} />
+          ),
+          headerStyle: {
+            elevation: 0,
+            backgroundColor: Colors.Gray3,
+          },
+        }}
       />
     </Stack.Navigator>
   );
