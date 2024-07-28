@@ -1,7 +1,6 @@
 import React, {memo} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Text, View} from 'react-native';
 import utils from './utils';
 import Routes from '../App/Utils/Route';
 import {Colors} from '../App/Configs/Colors';

@@ -7,7 +7,7 @@ import API from '../../../Configs/API';
 import Routes from '../../../Utils/Route';
 import {useNavigation} from '@react-navigation/native';
 import Images from '../../../Configs/Images';
-import styles from './SignUpStyles';
+import styles from './style';
 
 const SignUp = () => {
   const navigation = useNavigation();

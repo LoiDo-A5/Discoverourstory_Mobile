@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {View, Button, SafeAreaView, Image, Keyboard} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import styles from './LoginStyles';
+import styles from './style';
 import {useDispatch, useSelector} from 'react-redux';
 
 import LoadingScreen from '../../../Components/LoadingView';
