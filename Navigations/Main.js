@@ -43,7 +43,7 @@ const StackNavigator = () => {
           tabBarIcon: ({color, size}) => {
             let iconName;
 
-            if (route.name === 'Home') {
+            if (route.name === 'Dashboard') {
               iconName = 'home';
             } else if (route.name === 'Profile') {
               iconName = 'person';
@@ -55,7 +55,7 @@ const StackNavigator = () => {
           },
           headerTitleAlign: 'center',
         })}>
-        <Tab.Screen name="Home" component={Dashboard} />
+        <Tab.Screen name="Dashboard" component={Dashboard} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>

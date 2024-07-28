@@ -9,7 +9,7 @@ import {Colors} from '../App/Configs/Colors';
 import Device from '../App/Configs/Device';
 import Route from '../App/Utils/Route';
 import Login from '../App/Containers/Auth/Login/Login';
-import SignUp from '../App/Containers/Auth/SignUp';
+import SignUp from '../App/Containers/Auth/SignUp/SignUp';
 
 const Stack = createStackNavigator();
 

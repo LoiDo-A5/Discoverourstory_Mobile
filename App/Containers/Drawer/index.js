@@ -8,7 +8,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Images from '../../Configs/Images';
 import AlertModal from '../../Components/Alert';
 import {useDispatch, useSelector} from 'react-redux';
 import {CommonActions} from '@react-navigation/native';
@@ -52,20 +51,10 @@ const DrawerContainer = ({navigation}) => {
     navigation.navigate(Routes.MyAccount);
   };
 
-  const goToPolicy = () => {
-    navigation.navigate(Routes.TermAndPolicy);
-  };
-
-  const goToContact = () => {
-    navigation.navigate(Routes.ContactUs);
-  };
-
   return (
     <SafeAreaView style={styles.wrap}>
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={[styles.row, styles.logoWrap]}>
-          <Image source={Images.logo} style={styles.logo} />
-
           <View style={styles.avatarBackground}>
             {user?.avatar_url ? (
               <Image source={{uri: user?.avatar_url}} style={styles.avatar} />
