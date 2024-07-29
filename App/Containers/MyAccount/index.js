@@ -34,7 +34,7 @@ const MyAccount = () => {
     if (success) {
       ToastBottomHelper.success('Update successfully');
       dispatch(updateAccount(data));
-      navigation.navigate(Routes.Main);
+      navigation.goBack();
     }
   };
 

@@ -7,8 +7,8 @@ const MyAccountNav = ({userProfile}) => {
 
   return (
     <View style={styles.navContainer}>
-      {userProfile.avatar && (
-        <Image source={{uri: userProfile.avatar}} style={styles.avatar} />
+      {userProfile?.avatar && (
+        <Image source={{uri: userProfile?.avatar}} style={styles.avatar} />
       )}
       <Text style={styles.userName}>{userProfile.name}</Text>
       <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
