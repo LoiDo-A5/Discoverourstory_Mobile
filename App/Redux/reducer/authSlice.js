@@ -19,11 +19,17 @@ const authSlice = createSlice({
         account: action.payload,
       };
     },
-    updateAuthentication: (state, action) => {
-      const {accessToken, refreshToken} = action.payload;
-      state.accessToken = accessToken;
-      state.refreshToken = refreshToken;
-      state.isLogin = true;
+    updateAccount: (state, action) => {
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          user: {
+            ...state.account.user,
+            ...action.payload,
+          },
+        },
+      };
     },
     setAccessToken: (state, action) => {
       const accessToken = action.payload;
@@ -45,7 +51,7 @@ export const {
   setAccessToken,
   setRefreshToken,
   handleLogout,
-  updateAuthentication,
+  updateAccount,
   login,
 } = authSlice.actions;
 
