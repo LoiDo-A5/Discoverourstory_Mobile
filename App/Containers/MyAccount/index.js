@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, ScrollView, Button} from 'react-native';
+import {ScrollView, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import MyAccountNav from './MyAccountNav';
 import MyAccountForm from './MyAccountForm';
@@ -9,6 +9,7 @@ import API from '../../Configs/API';
 import {updateAccount} from '../../Redux/reducer/authSlice';
 import {ToastBottomHelper} from '../../Utils/Utils';
 import Routes from '../../Utils/Route';
+import styles from './style';
 
 const MyAccount = () => {
   const user = useSelector(state => state.auth.account.user);
@@ -52,12 +53,5 @@ const MyAccount = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-  },
-});
 
 export default MyAccount;
