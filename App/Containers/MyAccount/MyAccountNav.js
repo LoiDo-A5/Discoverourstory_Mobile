@@ -28,7 +28,11 @@ const MyAccountNav = ({userProfile, setUserProfile}) => {
         setModalVisible(false);
       })
       .catch(error => {
-        console.error('Error taking photo: ', error);
+        if (error.message === 'User cancelled image selection') {
+          console.log('Image selection was cancelled by the user.');
+        } else {
+          console.error('Error picking image: ', error);
+        }
         setModalVisible(false);
       });
   };
@@ -49,11 +53,15 @@ const MyAccountNav = ({userProfile, setUserProfile}) => {
         setModalVisible(false);
       })
       .catch(error => {
-        console.error('Error picking image: ', error);
+        if (error.message === 'User cancelled image selection') {
+          console.log('Image selection was cancelled by the user.');
+        } else {
+          console.error('Error picking image: ', error);
+        }
         setModalVisible(false);
       });
   };
-
+  
   return (
     <View style={styles.navContainer}>
       {userProfile?.avatar && (
