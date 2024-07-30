@@ -20,26 +20,22 @@ const MyAccount = () => {
   const handleSubmitProfile = async () => {
     const formData = new FormData();
     if (userProfile?.avatarUploadFile) {
-      console.log('userProfile?.avatar', userProfile?.avatar);
       const file = {
-        uri: userProfile.avatar.uri,
-        type: userProfile.avatarUploadFile.type,
-        name: userProfile.avatar.name,
+        uri: userProfile.avatarUploadFile,
+        type: 'image/jpeg',
+        name: 'avatar.jpg',
       };
       formData.append('avatar', file);
     }
     formData.append('name', userProfile?.name || '');
 
-    const {success, data, error} = await axiosPatch(
-      API.AUTH.ACCOUNT_INFO,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+    console.log('formData', formData);
+
+    const {success, data} = await axiosPatch(API.AUTH.ACCOUNT_INFO, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
       },
-    );
-    console.log('error', error);
+    });
 
     if (success) {
       ToastBottomHelper.success('Update successfully');

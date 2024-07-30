@@ -8,11 +8,9 @@ import {
   Modal,
   Button,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import ImagePickerCrop from 'react-native-image-crop-picker';
 
 const MyAccountNav = ({userProfile, setUserProfile}) => {
-  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
 
   const takePhotoFromCamera = () => {
@@ -22,8 +20,6 @@ const MyAccountNav = ({userProfile, setUserProfile}) => {
       cropping: true,
     })
       .then(image => {
-        console.log(image);
-        // Update user profile with the new avatar
         const updatedProfile = {
           ...userProfile,
           avatar: image.path,
@@ -45,12 +41,10 @@ const MyAccountNav = ({userProfile, setUserProfile}) => {
       cropping: true,
     })
       .then(image => {
-        console.log(image);
         setModalVisible(false);
         // Optional: Update userProfile state or upload the image to the server here
       })
       .catch(error => {
-        console.error('Error picking image: ', error);
         setModalVisible(false);
       });
   };
