@@ -8,7 +8,6 @@ import {axiosPatch} from '../../Apis/axios';
 import API from '../../Configs/API';
 import {updateAccount} from '../../Redux/reducer/authSlice';
 import {ToastBottomHelper} from '../../Utils/Utils';
-import Routes from '../../Utils/Route';
 import styles from './style';
 
 const MyAccount = () => {
@@ -21,15 +20,26 @@ const MyAccount = () => {
   const handleSubmitProfile = async () => {
     const formData = new FormData();
     if (userProfile?.avatarUploadFile) {
-      formData.append('avatar', userProfile?.avatarUploadFile);
+      console.log('userProfile?.avatar', userProfile?.avatar);
+      const file = {
+        uri: userProfile.avatarUploadFile.uri,
+        type: userProfile.avatarUploadFile.type,
+        name: userProfile.avatarUploadFile.name,
+      };
+      formData.append('avatar', file);
     }
     formData.append('name', userProfile?.name || '');
 
-    const {success, data} = await axiosPatch(API.AUTH.ACCOUNT_INFO, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
+    const {success, data, error} = await axiosPatch(
+      API.AUTH.ACCOUNT_INFO,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       },
-    });
+    );
+    console.log('error', error);
 
     if (success) {
       ToastBottomHelper.success('Update successfully');
@@ -40,7 +50,7 @@ const MyAccount = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <MyAccountNav userProfile={userProfile} />
+      <MyAccountNav userProfile={userProfile} setUserProfile={setUserProfile} />
       <MyAccountForm
         userProfile={userProfile}
         setUserProfile={setUserProfile}
