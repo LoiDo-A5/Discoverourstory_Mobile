@@ -3,9 +3,11 @@ import Toast from 'react-native-toast-message';
 import {isValidPassword} from './Validation';
 import api from '../Apis/axios';
 import {LANGUAGE} from '../Configs/Constant';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const setAxiosDefaultAuthToken = token => {
   api.setHeaders({Authorization: `Token ${token}`});
+  AsyncStorage.setItem('token', token);
 };
 
 export const setAxiosDefaultLanguage = language => {

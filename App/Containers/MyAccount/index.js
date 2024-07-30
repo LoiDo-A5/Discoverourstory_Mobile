@@ -29,8 +29,6 @@ const MyAccount = () => {
     }
     formData.append('name', userProfile?.name || '');
 
-    console.log('formData', formData);
-
     const {success, data} = await axiosPatch(API.AUTH.ACCOUNT_INFO, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',

@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import {View, Text, TextInput} from 'react-native';
+import styles from './style';
 
 const MyAccountForm = ({userProfile, setUserProfile}) => {
   return (
@@ -25,26 +26,5 @@ const MyAccountForm = ({userProfile, setUserProfile}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  formContainer: {
-    padding: 20,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    padding: 10,
-    fontSize: 16,
-    marginTop: 5,
-  },
-});
 
 export default MyAccountForm;

@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  Modal,
-  Button,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Image, Modal} from 'react-native';
 import ImagePickerCrop from 'react-native-image-crop-picker';
+import styles from './style';
+
+const CustomButton = ({onPress, title}) => (
+  <TouchableOpacity onPress={onPress} style={styles.buttonStyle}>
+    <Text style={styles.buttonText}>{title}</Text>
+  </TouchableOpacity>
+);
 
 const MyAccountNav = ({userProfile, setUserProfile}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -77,64 +76,20 @@ const MyAccountNav = ({userProfile, setUserProfile}) => {
             <Text style={styles.modalText}>
               Choose an option for the profile picture:
             </Text>
-            <Button title="Take Photo" onPress={takePhotoFromCamera} />
-            <Button
+            <CustomButton title="Take Photo" onPress={takePhotoFromCamera} />
+            <CustomButton
               title="Pick Image from Gallery"
               onPress={choosePhotoFromLibrary}
             />
-            <Button title="Cancel" onPress={() => setModalVisible(false)} />
+            <CustomButton
+              title="Cancel"
+              onPress={() => setModalVisible(false)}
+            />
           </View>
         </View>
       </Modal>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  navContainer: {
-    alignItems: 'center',
-    padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-  },
-  userName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
-  editProfileText: {
-    color: 'blue',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-});
 
 export default MyAccountNav;

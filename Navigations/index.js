@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import utils from './utils';
@@ -9,6 +9,8 @@ import {AuthStack} from './AuthStack';
 import MainDrawer from './Main';
 import MyAccount from '../App/Containers/MyAccount';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {setAxiosDefaultAuthToken} from '../App/Utils/Utils';
 
 const Stack = createStackNavigator();
 
@@ -68,6 +70,17 @@ let NavStack = memo(() => {
 });
 
 const AppWithNavigationState = () => {
+  useEffect(() => {
+    const setAxiosAuthToken = async () => {
+      const token = await AsyncStorage.getItem('token');
+      if (token) {
+        setAxiosDefaultAuthToken(token);
+      }
+    };
+
+    setAxiosAuthToken();
+  }, []);
+
   return (
     <NavigationContainer>
       <NavStack />
