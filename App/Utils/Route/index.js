@@ -7,6 +7,7 @@ const Routes = {
   PhoneNumberVerification: 'PhoneNumberVerification',
   ForgotPassword: 'ForgotPassword',
   MyAccount: 'MyAccount',
+  RoomDetail: 'RoomDetail',
 };
 
 export default Routes;

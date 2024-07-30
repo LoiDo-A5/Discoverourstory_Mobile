@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, {memo, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -11,6 +12,7 @@ import MyAccount from '../App/Containers/MyAccount';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {setAxiosDefaultAuthToken} from '../App/Utils/Utils';
+import RoomDetail from '../App/Containers/RoomDetail/index.';
 
 const Stack = createStackNavigator();
 
@@ -55,7 +57,20 @@ let NavStack = memo(() => {
         component={MyAccount}
         options={{
           headerTitle: '',
-          // eslint-disable-next-line react/no-unstable-nested-components
+          headerBackImage: () => (
+            <Icon name="arrow-back" size={27} color={Colors.Black} />
+          ),
+          headerStyle: {
+            elevation: 0,
+            backgroundColor: Colors.Gray3,
+          },
+        }}
+      />
+      <Stack.Screen
+        name={Routes.RoomDetail}
+        component={RoomDetail}
+        options={{
+          headerTitle: '',
           headerBackImage: () => (
             <Icon name="arrow-back" size={27} color={Colors.Black} />
           ),

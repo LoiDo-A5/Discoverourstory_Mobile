@@ -7,6 +7,9 @@ const API = {
   ROOM: {
     LIST_ROOM: '/accounts/rooms/',
   },
+  MESSAGE: {
+    LIST_MESSAGES: '/accounts/messages/',
+  },
 };
 
 export default API;

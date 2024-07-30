@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import API from '../../Configs/API';
 import {axiosGet} from '../../Apis/axios';
 import styles from './style';
+import Routes from '../../Utils/Route';
 
 const Dashboard = () => {
   const [rooms, setRooms] = useState([]);
@@ -20,8 +21,8 @@ const Dashboard = () => {
     getListRoom();
   }, []);
 
-  const goToRoom = roomId => {
-    navigation.navigate('RoomDetail', {roomId});
+  const goToRoom = id => {
+    navigation.navigate(Routes.RoomDetail, {id});
   };
 
   return (
