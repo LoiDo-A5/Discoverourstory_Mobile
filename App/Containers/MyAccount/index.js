@@ -22,9 +22,9 @@ const MyAccount = () => {
     if (userProfile?.avatarUploadFile) {
       console.log('userProfile?.avatar', userProfile?.avatar);
       const file = {
-        uri: userProfile.avatarUploadFile.uri,
+        uri: userProfile.avatar.uri,
         type: userProfile.avatarUploadFile.type,
-        name: userProfile.avatarUploadFile.name,
+        name: userProfile.avatar.name,
       };
       formData.append('avatar', file);
     }

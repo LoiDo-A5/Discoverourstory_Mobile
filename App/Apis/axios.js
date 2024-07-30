@@ -183,6 +183,9 @@ export async function axiosPatch(...options) {
 export async function axiosDelete(...options) {
   return await axiosCall('delete', ...options);
 }
+
+export default api;
+
 const convertFilenameImage = filename => {
   const filenameConverted = filename?.replace(/HEIC/g, 'jpg');
   return filenameConverted || filename;
@@ -211,8 +214,4 @@ export function createFormData(data, list_file_field) {
 
     formData.append(key, data[key]);
   });
-
-  return formData;
 }
-
-export default api;
