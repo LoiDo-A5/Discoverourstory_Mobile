@@ -41,10 +41,16 @@ const MyAccountNav = ({userProfile, setUserProfile}) => {
       cropping: true,
     })
       .then(image => {
+        const updatedProfile = {
+          ...userProfile,
+          avatar: image.path,
+          avatarUploadFile: image.path,
+        };
+        setUserProfile(updatedProfile);
         setModalVisible(false);
-        // Optional: Update userProfile state or upload the image to the server here
       })
       .catch(error => {
+        console.error('Error picking image: ', error);
         setModalVisible(false);
       });
   };
