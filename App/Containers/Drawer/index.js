@@ -19,7 +19,7 @@ import {handleLogout} from '../../Redux/reducer/authSlice';
 const DrawerContainer = ({navigation}) => {
   const alertRef = useRef(null);
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
+  const user = useSelector(state => state.auth.account.user);
 
   const doLogout = () => {
     dispatch(handleLogout());
@@ -56,8 +56,8 @@ const DrawerContainer = ({navigation}) => {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={[styles.row, styles.logoWrap]}>
           <View style={styles.avatarBackground}>
-            {user?.avatar_url ? (
-              <Image source={{uri: user?.avatar_url}} style={styles.avatar} />
+            {user?.avatar ? (
+              <Image source={{uri: user?.avatar}} style={styles.avatar} />
             ) : (
               <View>
                 <Icon name="account-circle" size={52} />
@@ -65,7 +65,6 @@ const DrawerContainer = ({navigation}) => {
             )}
             <View style={styles.textContainer}>
               <Text style={[styles.fullName]}>{user?.name}</Text>
-              <Text style={[styles.email]}>{user ? user.full_name : ''}</Text>
             </View>
           </View>
         </View>
@@ -191,8 +190,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     marginLeft: 15,
-    justifyContent: 'flex-start',
-    flex: 1,
+    justifyContent: 'center',
   },
   fullName: {
     backgroundColor: Colors.TextTransparent,

@@ -61,7 +61,7 @@ const MyAccountNav = ({userProfile, setUserProfile}) => {
         setModalVisible(false);
       });
   };
-  
+
   return (
     <View style={styles.navContainer}>
       {userProfile?.avatar && (
