@@ -29,15 +29,22 @@ const RoomDetail = () => {
     if (id) {
       getListMessage();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const getListMessage = async () => {
-    if (!id) return;
+    if (!id) {
+      return;
+    }
     const {success, data} = await axiosGet(
       `${API.MESSAGE.LIST_MESSAGES}?room_id=${id}`,
     );
     if (success) {
-      setListMessage(data);
+      const normalizedData = data.map(msg => ({
+        ...msg,
+        sender: {...msg.sender, id: msg.sender.id || msg.sender.user_id},
+      }));
+      setListMessage(normalizedData);
     }
   };
 
@@ -61,14 +68,16 @@ const RoomDetail = () => {
         data={[...listMessage, ...messages]}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => {
-          const isMe = item.sender?.id === user?.id;
+          const isMe = user.id === (item.sender?.id || item.user?.id);
           return (
             <View style={isMe ? styles.myMessage : styles.otherMessage}>
               <Image
-                source={{uri: item.sender?.avatar}}
+                source={{uri: item.sender?.avatar || item.user?.avatar}}
                 style={styles.avatarStyle}
               />
-              <Text>{item.sender?.name}</Text>
+              <Text style={styles.textName}>
+                {isMe ? 'Me' : item.sender?.name || item.user?.name}
+              </Text>
               <Text>{item.content || item.message}</Text>
               <Text>{moment(item.timestamp).format('HH:mm DD/MM/YYYY')}</Text>
             </View>
@@ -84,6 +93,7 @@ const RoomDetail = () => {
           onChangeText={setMessage}
           onSubmitEditing={handleSendMessage}
           placeholder="Type your message"
+          style={styles.input}
         />
         <Button title="Send" onPress={handleSendMessage} />
       </View>
@@ -117,6 +127,17 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
+    marginRight: 10,
+  },
+  textName: {
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
   },
 });
 
