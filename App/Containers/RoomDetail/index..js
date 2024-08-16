@@ -15,6 +15,7 @@ import useChat from '../../Hooks/useChat';
 import {axiosGet} from '../../Apis/axios';
 import API from '../../Configs/API';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const RoomDetail = () => {
   const route = useRoute();
@@ -72,10 +73,16 @@ const RoomDetail = () => {
           return (
             <View style={isMe ? styles.myMessage : styles.otherMessage}>
               <View style={styles.messageContainer}>
-                <Image
-                  source={{uri: item.sender?.avatar || item.user?.avatar}}
-                  style={styles.avatarStyle}
-                />
+                {item.sender?.avatar || item.user?.avatar ? (
+                  <Image
+                    source={{uri: item.sender?.avatar || item.user?.avatar}}
+                    style={styles.avatarStyle}
+                  />
+                ) : (
+                  <View style={styles.iconContainer}>
+                    <Icon name="account-circle" size={40} color="#888" />
+                  </View>
+                )}
                 <Text style={styles.textName}>
                   {isMe ? 'Me' : item.sender?.name || item.user?.name}
                 </Text>
@@ -145,6 +152,9 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 10,
+  },
+  iconContainer: {
+    marginRight: 4,
   },
 });
 
