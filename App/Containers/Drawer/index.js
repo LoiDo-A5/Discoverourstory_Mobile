@@ -75,11 +75,7 @@ const DrawerContainer = ({navigation}) => {
               image={'perm-identity'}
               name={'My account'}
             />
-            <Row
-              onPress={() => navigation.navigate(Routes.Language)}
-              image={'language'}
-              name={'Language'}
-            />
+            <Row image={'language'} name={'Language'} />
             <Row onPress={onLogout} image={'logout'} name={'Logout'} />
           </View>
         </View>
