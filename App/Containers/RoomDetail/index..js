@@ -88,7 +88,9 @@ const RoomDetail = () => {
                 </Text>
               </View>
               <Text>{item.content || item.message}</Text>
-              <Text>{moment(item.timestamp).format('HH:mm DD/MM/YYYY')}</Text>
+              <Text style={styles.timestamp}>
+                {moment(item.timestamp).format('HH:mm DD/MM/YYYY')}
+              </Text>
             </View>
           );
         }}
@@ -120,6 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     padding: 20,
+    marginBottom: 10,
   },
   myMessage: {
     alignSelf: 'flex-end',
@@ -144,8 +147,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   textName: {
-    fontWeight: 'bold',
+    fontWeight: 600,
     marginBottom: 5,
+    fontSize: 12,
   },
   input: {
     height: 40,
@@ -155,6 +159,11 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     marginRight: 4,
+  },
+  timestamp: {
+    fontSize: 12,
+    color: '#888',
+    marginTop: 5,
   },
 });
 
