@@ -71,13 +71,15 @@ const RoomDetail = () => {
           const isMe = user.id === (item.sender?.id || item.user?.id);
           return (
             <View style={isMe ? styles.myMessage : styles.otherMessage}>
-              <Image
-                source={{uri: item.sender?.avatar || item.user?.avatar}}
-                style={styles.avatarStyle}
-              />
-              <Text style={styles.textName}>
-                {isMe ? 'Me' : item.sender?.name || item.user?.name}
-              </Text>
+              <View style={styles.messageContainer}>
+                <Image
+                  source={{uri: item.sender?.avatar || item.user?.avatar}}
+                  style={styles.avatarStyle}
+                />
+                <Text style={styles.textName}>
+                  {isMe ? 'Me' : item.sender?.name || item.user?.name}
+                </Text>
+              </View>
               <Text>{item.content || item.message}</Text>
               <Text>{moment(item.timestamp).format('HH:mm DD/MM/YYYY')}</Text>
             </View>
@@ -102,6 +104,11 @@ const RoomDetail = () => {
 };
 
 const styles = StyleSheet.create({
+  messageContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
   background: {
     flex: 1,
     justifyContent: 'flex-end',
