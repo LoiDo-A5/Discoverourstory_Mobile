@@ -5,7 +5,7 @@ function useChat(roomId) {
   const [ws, setWs] = useState(null);
 
   useEffect(() => {
-    const websocket = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${roomId}/`);
+    const websocket = new WebSocket(`ws://10.0.2.2:8000/ws/chat/${roomId}/`);
     setWs(websocket);
 
     websocket.onopen = () => {
